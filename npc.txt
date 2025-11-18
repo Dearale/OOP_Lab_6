@@ -1,0 +1,11 @@
+10
+desman NPC_0 412 159
+bittern NPC_1 194 259
+desman NPC_2 34 225
+bear NPC_3 272 289
+bittern NPC_4 309 486
+bittern NPC_5 170 474
+bear NPC_6 107 276
+bear NPC_7 464 451
+bear NPC_8 150 29
+bittern NPC_9 304 485

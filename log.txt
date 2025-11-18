@@ -1,0 +1,16 @@
+Murder --------
+Attacker: desman NPC_2 34 225
+Killed: bear NPC_6 107 276
+
+Murder --------
+Attacker: bear NPC_3 272 289
+Killed: bittern NPC_1 194 259
+
+Murder --------
+Attacker: bear NPC_6 107 276
+Killed: bittern NPC_1 194 259
+
+Murder --------
+Attacker: bear NPC_6 107 276
+Killed: desman NPC_2 34 225
+
