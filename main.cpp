@@ -6,9 +6,8 @@ int main()
 {
     initialize_editor();
 
-    set_t array; // монстры
+    set_t array;
 
-    // Гененрируем начальное распределение монстров
     std::cout << "Generating ..." << std::endl;
     generate_npcs(array, 10, 501);
 

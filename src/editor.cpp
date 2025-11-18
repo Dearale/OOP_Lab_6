@@ -5,6 +5,8 @@
 #include "../include/npc.h"
 #include <fstream>
 #include <ctime>
+#include <string>
+#include <vector>
 
 // Text Observer
 class TextObserver : public IFightObserver

@@ -1,3 +1,5 @@
+// Тесты для программы с NPC (Desman, Bittern, Bear)
+
 #include <gtest/gtest.h>
 #include <sstream>
 #include <string>
@@ -8,6 +10,7 @@
 #include "../include/bear.h"
 #include "../include/editor.h"
 
+// -------------------- NPC base --------------------
 
 TEST(NPCTest, ConstructorAndOutput) {
 	std::string name = "Bob";
@@ -35,6 +38,7 @@ TEST(NPCTest, StreamConstructorAndSave) {
 
 	std::stringstream out;
 	d.save(out);
+	// формат: "desman Alice 3 4" + перевод строки
 	std::string s = out.str();
 	EXPECT_NE(s.find("desman"), std::string::npos);
 	EXPECT_NE(s.find("Alice"), std::string::npos);
@@ -44,7 +48,7 @@ TEST(NPCTest, DistanceCheck) {
 	std::string n1 = "A";
 	std::string n2 = "B";
 	Desman a(n1, 0, 0);
-	Desman b(n2, 3, 4);
+	Desman b(n2, 3, 4); // расстояние 5
 
 	auto pa = std::make_shared<Desman>(a);
 	auto pb = std::make_shared<Desman>(b);
@@ -53,6 +57,7 @@ TEST(NPCTest, DistanceCheck) {
 	EXPECT_FALSE(pa->is_close(pb, 4));
 }
 
+// -------------------- Fight matrix (accept/fight) --------------------
 
 static std::shared_ptr<Desman> makeDesman(const std::string &name, int x, int y) {
 	std::string n = name;
@@ -76,7 +81,7 @@ TEST(FightLogicTest, DesmanVsOthers) {
 
 	// Desman атакует
 	EXPECT_FALSE(b->accept(d));   // Bittern vs Desman => false
-	EXPECT_TRUE(br->accept(d));   // Bear vs Desman => true
+	EXPECT_TRUE(br->accept(d));   // Bear vs Desman => true (Desman победил медведя)
 
 	// Desman защищается
 	EXPECT_FALSE(d->accept(b));   // Desman vs Bittern => false
@@ -99,9 +104,11 @@ TEST(FightLogicTest, BearVsOthers) {
 	auto br = makeBear("br", 0, 0);
 
 	EXPECT_TRUE(d->accept(br));   // Desman vs Bear => true
-	EXPECT_TRUE(b->accept(br));
+	EXPECT_TRUE(b->accept(br));   // Bittern vs Bear => false (медведь не побеждает сам себя)
 	EXPECT_FALSE(br->accept(br)); // Bear vs Bear => false
 }
+
+// -------------------- Editor: factory, save/load, fight --------------------
 
 TEST(EditorTest, FactoryByTypeAndStream) {
 	std::string name = "X";
