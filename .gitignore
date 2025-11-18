@@ -73,5 +73,3 @@ Thumbs.db
 *.tar
 *.pid
 .env
-
-/.cache/clangd/
